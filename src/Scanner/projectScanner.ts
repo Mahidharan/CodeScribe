@@ -8,7 +8,7 @@ export interface ProjectNode {
   children?: ProjectNode[];
 }
 
-const IGNORE_FOLDERS = ["node_modules", ".git", "dist", "build", "next", "out"];
+const IGNORE_FOLDERS = ["node_modules", ".git", "dist", "build", ".next", "out"];
 
 export function scanDirectory(dirPath: string): ProjectNode {
   const stats = fs.statSync(dirPath);
