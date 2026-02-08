@@ -5,9 +5,9 @@ export function generateMarkdown(node: ProjectNode, depth: number = 0): string {
 
   let markdown = "";
   if (node.type === "folder") {
-    markdown += `${indent}-**${node.name}/**\n`;
+    markdown += `${indent}- **${node.name}/**\n`;
   } else {
-    markdown += `${indent}-${node.name}\n`;
+    markdown += `${indent}- ${node.name}\n`;
   }
   if (node.children) {
     for (const child of node.children) {

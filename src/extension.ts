@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import { scanDirectory } from "./Scanner/projectScanner";
 import { generateMarkdown } from "./Docs/markdownGenerator";
+import { writeReadme } from "./Docs/readmeWriter";
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "codescribe" is now active!');
@@ -17,9 +18,11 @@ export function activate(context: vscode.ExtensionContext) {
       const projectTree = scanDirectory(rootpath);
 
       const markdown = generateMarkdown(projectTree);
-      console.log("Generated markdown:\n", markdown);
+      writeReadme(rootpath, markdown);
 
-      vscode.window.showInformationMessage("CodeScribe Scanned your Project");
+      vscode.window.showInformationMessage(
+        "CodeScribe generated README.md successfully",
+      );
     },
   );
 
