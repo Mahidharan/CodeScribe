@@ -1,6 +1,7 @@
 {
-  "name": "codescribe",
-  "displayName": "codescribe",
+  "name": "codescribe-docs",
+  "displayName": "CodeScribe Docs",
+  "publisher": "Mahidharan",
   "description": "Automatically generates and syncs project documentation",
   "version": "0.0.1",
   "engines": {
