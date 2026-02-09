@@ -8,7 +8,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   const disposable = vscode.commands.registerCommand(
     "codescribe.helloWorld",
-    () => {
+    async () => {
       const workspace = vscode.workspace.workspaceFolders;
       if (!workspace) {
         vscode.window.showErrorMessage("No Workspace folder found");
@@ -18,11 +18,13 @@ export function activate(context: vscode.ExtensionContext) {
       const projectTree = scanDirectory(rootpath);
 
       const markdown = generateMarkdown(projectTree);
-      writeReadme(rootpath, markdown);
+      const success = await writeReadme(rootpath, markdown);
 
-      vscode.window.showInformationMessage(
-        "CodeScribe generated README.md successfully",
-      );
+      if (success) {
+        vscode.window.showInformationMessage(
+          "CodeScribe generated README.md successfully",
+        );
+      }
     },
   );
 
