@@ -2,7 +2,6 @@ import * as vscode from "vscode";
 import { scanDirectory } from "./Scanner/projectScanner";
 import { generateMarkdown } from "./Docs/markdownGenerator";
 import { writeReadme } from "./Docs/readmeWriter";
-import { generateAISummary } from "./Docs/aiSummaryGenerator";
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "codescribe" is now active!');
@@ -20,7 +19,6 @@ export function activate(context: vscode.ExtensionContext) {
 
       let summary = "";
       try {
-        summary = await generateAISummary(projectTree);
       } catch (error) {
         vscode.window.showWarningMessage(
           "AI summary failed. Generating README without summary.",
