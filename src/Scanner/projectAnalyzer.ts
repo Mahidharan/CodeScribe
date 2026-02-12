@@ -3,10 +3,12 @@ import { ProjectNode } from "./projectScanner";
 
 export interface ProjectAnalysis {
   projectName: string;
+  description: string;
   folders: string[];
   files: string[];
   dependencies: string[];
   devDependencies: string[];
+  scripts: string[];
 }
 
 export function analyzeProject(root: ProjectNode): ProjectAnalysis {
@@ -14,6 +16,8 @@ export function analyzeProject(root: ProjectNode): ProjectAnalysis {
   const files: string[] = [];
   let dependencies: string[] = [];
   let devDependencies: string[] = [];
+  let description: string = "";
+  let scripts: string[] = [];
 
   function traverse(node: ProjectNode) {
     if (node.type === "folder") {
@@ -32,6 +36,8 @@ export function analyzeProject(root: ProjectNode): ProjectAnalysis {
 
           dependencies = Object.keys(parsed.dependencies || {});
           devDependencies = Object.keys(parsed.devDependencies || {});
+          description = parsed.description || "";
+          scripts = Object.keys(parsed.scripts || {});
         } catch (error) {
           console.error("Error Parsing package.json", error);
         }
@@ -41,9 +47,11 @@ export function analyzeProject(root: ProjectNode): ProjectAnalysis {
   traverse(root);
   return {
     projectName: root.name,
+    description,
     folders,
     files,
     dependencies,
     devDependencies,
+    scripts,
   };
 }

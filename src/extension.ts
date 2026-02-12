@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import { scanDirectory } from "./Scanner/projectScanner";
 import { generateMarkdown } from "./Docs/markdownGenerator";
 import { writeReadme } from "./Docs/readmeWriter";
+import { analyzeProject, ProjectAnalysis } from "./Scanner/projectAnalyzer";
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "codescribe" is now active!');
@@ -16,6 +17,9 @@ export function activate(context: vscode.ExtensionContext) {
       }
       const rootpath = workspace[0].uri.fsPath;
       const projectTree = scanDirectory(rootpath);
+      const analysis = analyzeProject(projectTree);
+
+      console.log(analysis);
 
       let summary = "";
       try {
