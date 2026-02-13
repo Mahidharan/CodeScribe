@@ -42,6 +42,16 @@ Open Settings and configure the following under the `codescribe` section:
 - `CodeScribe: Generate README` — Generate or refresh README.md for the current workspace.
 - `CodeScribe: Sync Docs` — Scan the project and update documentation files to match folder structure.
 
+### Set / Update API Key (command)
+
+Use this command to securely set or update your OpenRouter API key without editing settings.json manually:
+
+1. Open the Command Palette (Ctrl+Shift+P / Cmd+Shift+P).
+2. Run `CodeScribe: Set / Update API Key`.
+3. Enter your OpenRouter API key when prompted — the key is stored in your global VS Code settings under `codescribe.openRouterApiKey`.
+
+If you need to remove or change the key later, re-run the command and provide a new key, or remove the value from Settings.
+
 ## Developer Guide
 
 To build and run the extension locally:

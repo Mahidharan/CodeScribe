@@ -2,7 +2,7 @@
   "name": "codescribe",
   "displayName": "CodeScribe - AI README Generator",
   "publisher": "Mahidharan",
-  "description": "AI-powered VS Code extension that analyzes your project and generates professional README.md files using DeepSeek AI.",
+  "description": "AI-powered VS Code extension that analyzes your project and generates professional README.md files using DeepSeek via OpenRouter.",
   "version": "0.1.0",
   "license": "MIT",
   "repository": {
@@ -26,11 +26,19 @@
     "Other"
   ],
   "main": "./out/extension.js",
+  "activationEvents": [
+    "onCommand:codescribe.generateReadme",
+    "onCommand:codescribe.setApiKey"
+  ],
   "contributes": {
     "commands": [
       {
-        "command": "codescribe.helloWorld",
+        "command": "codescribe.generateReadme",
         "title": "CodeScribe: Generate README.md"
+      },
+      {
+        "command": "codescribe.setApiKey",
+        "title": "CodeScribe: Set / Update API Key"
       }
     ],
     "configuration": {
@@ -40,7 +48,8 @@
         "codescribe.openRouterApiKey": {
           "type": "string",
           "default": "",
-          "description": "Enter your OpenRouter API key to enable AI README generation."
+          "description": "Your OpenRouter API key used for AI README generation.",
+          "scope": "application"
         }
       }
     }
