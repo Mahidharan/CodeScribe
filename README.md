@@ -1,3 +1,12 @@
+#
+
+<p align="center">
+	<picture>
+		<source srcset="assets/icon.png" type="image/svg+xml" />
+		<img src="assets/icon.png" alt="CodeScribe" width="120" />
+	</picture>
+</p>
+
 # CodeScribe
 
 A Visual Studio Code extension that generates, updates, and keeps project documentation in sync with your codebase.

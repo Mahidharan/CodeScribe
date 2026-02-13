@@ -30,7 +30,7 @@
     "commands": [
       {
         "command": "codescribe.helloWorld",
-        "title": "CodeScribe: Generate AI README"
+        "title": "CodeScribe: Generate README.md"
       }
     ],
     "configuration": {
