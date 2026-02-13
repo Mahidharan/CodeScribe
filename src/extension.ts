@@ -1,10 +1,9 @@
 import * as vscode from "vscode";
 import { scanDirectory } from "./Scanner/projectScanner";
-import { generateMarkdown } from "./Docs/markdownGenerator";
 import { writeReadme } from "./Docs/readmeWriter";
 import { analyzeProject } from "./Scanner/projectAnalyzer";
 import { buildContext } from "./AI/contextBuilder";
-import { generateReadme } from "./AI/geminiService";
+import { generateReadme } from "./AI/deepseekService";
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "codescribe" is now active!');
@@ -33,9 +32,8 @@ export function activate(context: vscode.ExtensionContext) {
           "AI generation failed .Generating basic README.",
         );
       }
-      const markdown = generateMarkdown(projectTree);
 
-      const success = await writeReadme(rootpath, aiReadme, markdown);
+      const success = await writeReadme(rootpath, aiReadme,);
 
       if (success) {
         vscode.window.showInformationMessage(

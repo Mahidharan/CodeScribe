@@ -1,69 +1,99 @@
 # CodeScribe
 
-A VS Code extension that automatically generates and syncs project documentation.
+A Visual Studio Code extension that generates, updates, and keeps project documentation in sync with your codebase.
 
-## Features
+## Key Features
 
-- Generates project documentation automatically
-- Syncs documentation with your project structure
-- Easy-to-use interface integrated into VS Code
+- Generate professional README.md files from project metadata
+- Create summaries and API-style docs using AI-powered prompts
+- Sync documentation to reflect folder and file structure changes
+- Configurable AI backend and temperature/max-token settings
 
 ## Requirements
 
-- VS Code ^1.109.0
+- Visual Studio Code 1.60 or later
+- Node.js 16+ (for development tasks)
 
-## Getting Started
+## Quickstart
 
-1. Open the Command Palette (Ctrl+Shift+P / Cmd+Shift+P)
-2. Run "Hello World" command to test the extension
-3. Customize and extend as needed
+1. Install the extension locally or from the Marketplace.
+2. Open the Command Palette (Ctrl+Shift+P / Cmd+Shift+P).
+3. Run the `CodeScribe: Generate README` command to create a README from your project.
 
-## Development
+## Configuration
 
-To run the extension in development mode:
-- Press F5 or go to Run > Start Debugging
-- A new VS Code window will open with the extension loaded
+Open Settings and configure the following under the `codescribe` section:
 
-To compile the extension:
+- `codescribe.openRouterApiKey` (string) — Required. Your OpenRouter / DeepSeek API key used for AI generation. Keep this secret; do not commit it to source control.
+- `codescribe.defaultTemperature` (number) — Optional. Controls AI creativity (default: 0.4).
+- `codescribe.maxTokens` (number) — Optional. Max tokens for generation (default: 1200).
+
+## Commands
+
+- `CodeScribe: Generate README` — Generate or refresh README.md for the current workspace.
+- `CodeScribe: Sync Docs` — Scan the project and update documentation files to match folder structure.
+
+## Developer Guide
+
+To build and run the extension locally:
+
 ```bash
+npm install
 npm run compile
 ```
 
-To watch for changes:
+Run the extension in the debugger:
+
+1. Press `F5` in VS Code or choose Run > Start Debugging.
+2. A new Extension Development Host window opens with the extension loaded.
+
+To watch for TypeScript changes while developing:
+
 ```bash
 npm run watch
 ```
 
-To lint the code:
+Run tests:
+
+```bash
+npm test
+```
+
+Lint and format:
+
 ```bash
 npm run lint
 ```
 
-## Release Notes
+## Security and Secrets
 
-### 0.0.1
+- Do not hard-code API keys in source files. Use the `codescribe.openRouterApiKey` setting or environment variables when running locally.
+- Treat generated content as a draft: review AI-generated text before publishing.
 
-Initial release of CodeScribe with basic Hello World command.
+## Contributing
 
----
+Contributions are welcome. Open issues or submit pull requests for bug fixes and enhancements. Follow standard GitHub flow and include tests for new features.
 
-## Following extension guidelines
+## Troubleshooting
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+- If AI calls fail, check `codescribe.openRouterApiKey` in Settings and verify network connectivity.
+- For TypeScript build errors, run `npm run compile` to see detailed diagnostics.
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+## License
 
-## Working with Markdown
+MIT — see the LICENSE file for details.
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+## ⚠️ Important: API Key Required
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+CodeScribe uses AI (via OpenRouter + DeepSeek) to generate README files.
 
-## For more information
+You must provide your own OpenRouter API key:
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+1. Go to https://openrouter.ai
+2. Create a free account
+3. Generate an API key
+4. Open VS Code Settings
+5. Search for `CodeScribe`
+6. Paste your API key into `codescribe.openRouterApiKey`
 
-**Enjoy!**
+Without an API key, AI generation will not work.

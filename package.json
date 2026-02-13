@@ -1,26 +1,49 @@
 {
-  "name": "codescribe-docs",
-  "displayName": "CodeScribe Docs",
+  "name": "codescribe",
+  "displayName": "CodeScribe - AI README Generator",
   "publisher": "Mahidharan",
-  "description": "Automatically generates and syncs project documentation",
-  "version": "0.0.1",
+  "description": "AI-powered VS Code extension that analyzes your project and generates professional README.md files using DeepSeek AI.",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mahidharan/codescribe"
+  },
+  "icon": "assets/icon.png",
+  "keywords": [
+    "AI",
+    "README",
+    "documentation",
+    "DeepSeek",
+    "OpenRouter",
+    "project analyzer"
+  ],
   "engines": {
     "vscode": "^1.109.0"
   },
   "categories": [
+    "Machine Learning",
     "Other"
-  ],
-  "activationEvents": [
-    "onCommand:codescribe.helloWorld"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "codescribe.helloWorld",
-        "title": "CodeScribe: Hello World"
+        "title": "CodeScribe: Generate AI README"
       }
-    ]
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "CodeScribe Settings",
+      "properties": {
+        "codescribe.openRouterApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Enter your OpenRouter API key to enable AI README generation."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
@@ -40,9 +63,5 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.54.0"
   },
-  "dependencies": {
-    "@google/generative-ai": "^0.24.1",
-    "dotenv": "^17.2.4",
-    "openai": "^6.18.0"
-  }
+  "dependencies": {}
 }
