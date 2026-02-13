@@ -39,7 +39,7 @@ export function generateMarkdown(node: ProjectNode, depth: number = 0): string {
     return "";
   }
 
-  let markdown = `${indent}- **{node.name}/**\n`;
+  let markdown = `${indent}- **${node.name}/**\n`;
   markdown += childrenMarkdown;
 
   return markdown;

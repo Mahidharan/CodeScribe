@@ -4,6 +4,7 @@ import { generateMarkdown } from "./Docs/markdownGenerator";
 import { writeReadme } from "./Docs/readmeWriter";
 import { analyzeProject } from "./Scanner/projectAnalyzer";
 import { buildContext } from "./AI/contextBuilder";
+import { generateReadme } from "./AI/geminiService";
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "codescribe" is now active!');
@@ -21,17 +22,20 @@ export function activate(context: vscode.ExtensionContext) {
       const analysis = analyzeProject(projectTree);
       const contextText = buildContext(analysis);
 
-      console.log("AI Context:\n", contextText);
+      let aiReadme = "";
 
-      let summary = "";
       try {
-      } catch (error) {
-        vscode.window.showWarningMessage(
-          "AI summary failed. Generating README without summary.",
-        ); 
+        aiReadme = await generateReadme(contextText);
+      } catch (error: any) {
+        console.error("Gemini Error", error);
+
+        vscode.window.showErrorMessage(
+          "AI generation failed .Generating basic README.",
+        );
       }
       const markdown = generateMarkdown(projectTree);
-      const success = await writeReadme(rootpath, summary, markdown);
+
+      const success = await writeReadme(rootpath, aiReadme, markdown);
 
       if (success) {
         vscode.window.showInformationMessage(
