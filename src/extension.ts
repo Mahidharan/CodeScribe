@@ -2,7 +2,8 @@ import * as vscode from "vscode";
 import { scanDirectory } from "./Scanner/projectScanner";
 import { generateMarkdown } from "./Docs/markdownGenerator";
 import { writeReadme } from "./Docs/readmeWriter";
-import { analyzeProject, ProjectAnalysis } from "./Scanner/projectAnalyzer";
+import { analyzeProject } from "./Scanner/projectAnalyzer";
+import { buildContext } from "./AI/contextBuilder";
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('Congratulations, your extension "codescribe" is now active!');
@@ -18,15 +19,16 @@ export function activate(context: vscode.ExtensionContext) {
       const rootpath = workspace[0].uri.fsPath;
       const projectTree = scanDirectory(rootpath);
       const analysis = analyzeProject(projectTree);
+      const contextText = buildContext(analysis);
 
-      console.log(analysis);
+      console.log("AI Context:\n", contextText);
 
       let summary = "";
       try {
       } catch (error) {
         vscode.window.showWarningMessage(
           "AI summary failed. Generating README without summary.",
-        );
+        ); 
       }
       const markdown = generateMarkdown(projectTree);
       const success = await writeReadme(rootpath, summary, markdown);
