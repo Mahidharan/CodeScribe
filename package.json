@@ -1,5 +1,5 @@
 {
-  "name": "codescribe",
+  "name": "codescribe-readme-ai",
   "displayName": "CodeScribe - AI README Generator",
   "publisher": "mahidharan",
   "description": "AI-powered VS Code extension that analyzes your project and generates professional README.md files using DeepSeek via OpenRouter.",
