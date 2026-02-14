@@ -3,7 +3,7 @@
   "displayName": "CodeScribe - AI README Generator",
   "publisher": "mahidharan",
   "description": "AI-powered VS Code extension that analyzes your project and generates professional README.md files using DeepSeek via OpenRouter.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "repository": {
     "type": "git",
