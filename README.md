@@ -1,9 +1,7 @@
 #
 
 <p align="center">
-	<picture>
 		<img src="assets/icon.png" alt="CodeScribe" width="120" />
-	</picture>
 </p>
 
 # CodeScribe
